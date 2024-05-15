@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetMoviesMutation } from "../redux/services/movieApi";
 import { FaSearch } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import { fetchMovies } from "../actions/movieActions";
 import KinoVerseImage from "../assets/KinoVerse.png";
 
 const Header = () => {

@@ -1,19 +1,31 @@
-import { FaRegHeart } from "react-icons/fa";
+import React from "react";
+import { FaHeart } from "react-icons/fa";
 
 const FilmCard = ({ movie }) => {
-  const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
+  const { title, poster_path, release_date, overview } = movie;
+  const releaseYear = release_date ? release_date.substring(0, 4) : "";
+  const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
+
   return (
-    <div className="bg-white rounded-lg shadow-inner">
+    <div class="bg-transparent p-4 rounded-lg shadow-md mx-auto">
       <img
-        src={poster_path ? `${posterBaseUrl}${poster_path}` : "No Image"}
+        src={
+          poster_path
+            ? `${imageBaseUrl}${poster_path}`
+            : "https://via.placeholder.com/300"
+        }
         alt={title}
-        className="w-full rounded-t-lg"
+        class="object-contain max-h-96 max-w-full rounded-md"
       />
-      <div className="p-4">
-        <h3 className="text-lg font-semibold">{movie.title}</h3>
-        <p className="text-gray-500">{movie.release_date}</p>
+      <div class="flex flex-row justify-between">
+        <div class="pt-3">
+          <p class="text-xl font-semibold mb-2 text-white">{title}</p>
+          <p class="text-[#B3B3B3] mb-1">{releaseYear}</p>
+        </div>
+        <button class="text-lg hover:text-[#f35e5e]">
+          <FaHeart />
+        </button>
       </div>
-      <FaRegHeart className="absolute top-2 right-2 text-red-500" />
     </div>
   );
 };

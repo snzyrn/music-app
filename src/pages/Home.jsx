@@ -1,34 +1,21 @@
-import { useState, useEffect } from "react";
-
-import FilmCard from "../components/FilmCard";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchMovies } from "../actions/movieActions";
 import Header from "../components/Header";
-import { useGetMoviesMutation } from "../redux/services/movieApi";
+import FilmCard from "../components/FilmCard";
 
-const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("");
-  const [getMovies, { data }] = useGetMoviesMutation();
-
+const Home = ({ movies, fetchMovies }) => {
   useEffect(() => {
     fetchMovies();
-  }, []);
-
-  const fetchMovies = async () => {
-    try {
-      const response = await getMovies({ query });
-      setQuery(response.data.results);
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
-  };
+  }, [fetchMovies]);
 
   return (
     <div>
       <Header />
-      <div className="container mx-auto mt-8">
+      <div className="container mx-auto mt-8 p-4 px-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {movies.map((movie) => (
-            <FilmCard key={data.id} movie={data} />
+            <FilmCard key={movie.id} movie={movie} />
           ))}
         </div>
       </div>
@@ -36,4 +23,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+  movies: state.movies.movies,
+});
+
+export default connect(mapStateToProps, { fetchMovies })(Home);
