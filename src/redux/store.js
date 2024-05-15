@@ -1,13 +1,10 @@
-// store.js
 import { configureStore } from "@reduxjs/toolkit";
-import playerReducer from "./features/playerSlice";
-import { tmdbApi } from "./services/TMDB";
+import { movieApi } from "./services/movieApi";
 
 export const store = configureStore({
   reducer: {
-    [tmdbApi.reducerPath]: tmdbApi.reducer,
-    player: playerReducer,
+    [movieApi.reducerPath]: movieApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(tmdbApi.middleware),
+    getDefaultMiddleware().concat(movieApi.middleware),
 });
