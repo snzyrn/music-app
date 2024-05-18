@@ -4,7 +4,7 @@
 
 Movie App is a frontend project developed using the TMDB API and the technologies in the tech stack.
 
-## Tech Stack:
+### Tech Stack
 
 <div style="display: flex; gap: 10px;">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Logo"/>
