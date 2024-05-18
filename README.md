@@ -16,6 +16,8 @@ Movie App is a frontend project developed using the TMDB API and the technologie
 
 ## Preview
 
+![Untitled](https://github.com/snzyrn/react-redux-tmdb-movie-app/assets/73521064/e850f7fa-3767-474c-932e-579eacf5b5b4)
+
 ## Getting Started
 
 Install my-project with npm
