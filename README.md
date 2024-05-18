@@ -20,7 +20,7 @@ Movie App is a frontend project developed using the TMDB API and the technologie
 
 ## Getting Started
 
-Install my-project with npm
+Install project with npm
 
 ```bash
     npm install
