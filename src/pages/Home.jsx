@@ -4,8 +4,8 @@ import { fetchMovies } from "../actions/movieActions";
 import { fetchRecommendation } from "../actions/recommendationActions";
 import { fetchSeries } from "../actions/serieActions";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import FilmSlider from "../components/FilmSlider";
-import backgroundImage from "../assets/background-image.jpeg";
 
 const Home = ({
   movies,
@@ -46,6 +46,7 @@ const Home = ({
           <FilmSlider movies={series} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

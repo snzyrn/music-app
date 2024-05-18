@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchMovies } from "../actions/movieActions";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import FilmCard from "../components/FilmCard";
 
 const Home = ({ movies, fetchMovies }) => {
@@ -20,6 +21,7 @@ const Home = ({ movies, fetchMovies }) => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import FilmCard from "../components/FilmCard";
 import { FaHeartCrack } from "react-icons/fa6";
 
@@ -7,9 +8,9 @@ const Favorites = () => {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="container mx-auto mt-8 p-4 px-22">
+      <div className="flex-grow container mx-auto mt-8 p-4 px-22">
         <h2 className="text-white pl-8 text-2xl pb-4">Your Favorites</h2>
         {favorites.length === 0 ? (
           <div className="text-white text-xl flex justify-center align-center m-10 mt-20">
@@ -24,6 +25,7 @@ const Favorites = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

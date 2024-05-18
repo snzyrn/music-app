@@ -5,7 +5,7 @@ const FilmSlider = ({ movies }) => {
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   const sliderRef = useRef(null);
   const [defaultTransform, setDefaultTransform] = useState(0);
-  const slideWidth = 398; // Adjust this value according to your needs
+  const slideWidth = 398;
 
   const goNext = () => {
     const slider = sliderRef.current;
@@ -41,7 +41,7 @@ const FilmSlider = ({ movies }) => {
             {movies.map((movie, index) => (
               <div
                 key={index}
-                className="flex flex-shrink-0 relative w-full sm:w-auto"
+                className="flex flex-shrink-0 relative w-full sm:w-auto group"
               >
                 <img
                   src={
@@ -50,9 +50,13 @@ const FilmSlider = ({ movies }) => {
                       : "https://placehold.co/600x400"
                   }
                   className="h-64 rounded-md"
-                  alt={movie.title}
+                  alt={movie.title || movie.name}
                 />
-                <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6"></div>
+                <div className="absolute w-full h-full bg-gray-800 bg-opacity-60 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white text-xl">
+                    {movie.title || movie.name}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
