@@ -1,43 +1,52 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetMoviesMutation } from "../redux/services/movieApi";
-import { FaSearch } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { fetchMovies } from "../actions/movieActions";
+import { FaSearch, FaHeart } from "react-icons/fa";
 import KinoVerseImage from "../assets/KinoVerse.png";
 
 const Header = () => {
-  const [query, setQuery] = useState("");
-  const [getMovies] = useGetMoviesMutation();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    getMovies({ query });
+  const handleSearchInput = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log("Search query:", searchQuery);
   };
 
   return (
     <div className="bg-transparent">
-      <div className=" mx-12 p-4 flex items-center justify-between">
+      <div className="mx-12 p-4 flex flex-col sm:flex-row items-center justify-between">
         <div>
-          <img src={KinoVerseImage} alt="KinoVerse" class="w-40" />
+          <Link to="/">
+            <button>
+              <img src={KinoVerseImage} alt="KinoVerse" className="w-40" />
+            </button>
+          </Link>
         </div>
-        <form className="relative flex mt-2" onSubmit={handleSearch}>
-          <button
-            type="submit"
-            className="absolute inset-y-0 left-0 px-4 py-2 text-white bg-transparent focus:outline-none font-medium text-sm"
-          >
-            <FaSearch />
-          </button>
+        <form
+          onSubmit={handleSearchSubmit}
+          className="relative flex mt-5 md:mt-2"
+        >
+          <Link>
+            <button
+              type="submit"
+              className="absolute inset-y-0 left-0 px-4 py-2 text-white bg-transparent focus:outline-none font-medium text-sm"
+            >
+              <FaSearch />
+            </button>
+          </Link>
           <input
             type="search"
             id="default-search"
-            className="w-80 h-10 p-4 pl-12 text-sm bg-[#181818] rounded-xl text-white placeholder-[#B3B3B3]"
+            className="w-80 h-10 p-4 pl-12 text-sm bg-black rounded-xl text-white placeholder-[#B3B3B3]"
             placeholder="Search a Movie"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={searchQuery}
+            onChange={handleSearchInput}
           />
         </form>
-        <div className="flex items-center m-0 space-x-1 gap-20">
+        <div className="flex items-center m-0 space-x-1 gap-20 mt-5 md:mt-0">
           <Link to="/" className="text-white hover:text-[#B3B3B3]">
             Home
           </Link>
@@ -45,13 +54,13 @@ const Header = () => {
             Movies
           </Link>
           <Link to="/series" className="text-white hover:text-[#B3B3B3]">
-            Series
+            TV Shows
           </Link>
-        </div>
-        <div>
-          <button class="text-white text-lg hover:text-[#B3B3B3]">
-            <FaHeart />
-          </button>
+          <Link to="/favorites" className="text-white hover:text-[#B3B3B3]">
+            <button>
+              <FaHeart />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
